@@ -8,9 +8,10 @@ from backend.customers.customer_routes import customers
 from backend.products.products_routes import products
 from backend.jobRecords.job_records_routes import job_records
 
-#adding applicants/industries blueprint
+#adding applicants/industries/company blueprint
 from backend.applicants.applicants_routes import applicants
 from backend.industry.industry_routes import industry
+from backend.company.company_routes import company
 
 
 import os
@@ -107,6 +108,7 @@ def create_app():
     #URL prefix for applicants/industries
     app.register_blueprint(applicants, url_prefix='/a')
     app.register_blueprint(industry,url_prefix='/i')
+    app.register_blueprint(company,url_prefix='/co')
 
     # Don't forget to return the app object
     return app
