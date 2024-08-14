@@ -20,5 +20,10 @@ st.markdown (
     mind, we created TalentTrace, a Job Tracker and database where 
     users can not only track their job applications, but the entries 
     they add are aggregated into trends that everyone can see and use.
+
+    Logo created in Adobe Illustrator by Zach :)
     """
         )
+
+if st.sidebar.button("Go Back"):
+    st.switch_page('Home.py')
