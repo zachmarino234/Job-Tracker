@@ -85,3 +85,18 @@ def add_new_applicant():
     db.get_db().commit()
     
     return 'Success!'
+
+# Remove an applicant from the database
+@applicants.route('/applicants/<appID>', methods=['DELETE'])
+def get_applicant(appID):
+    current_app.logger.info('DELETE /applicants/<appID> route')
+    cursor = db.get_db().cursor()
+    query = '''
+        DELETE FROM applicants
+        WHERE appID = {0}'''.format(appID)
+    cursor.execute(query)
+    theData = cursor.fetchall()
+    the_response = make_response(theData)
+    the_response.status_code = 200
+    the_response.mimetype = 'application/json'
+    return the_response
