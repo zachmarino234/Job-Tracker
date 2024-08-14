@@ -35,10 +35,10 @@ def get_all_job_records():
 
 # Return all the jobs that a certain applicant has applied to
 @job_records.route('/jobRecords/<appID>', methods=['GET'])
-def get_applicant_jobRecord(app_ID):
-    current_app.logger.info('GET /jobRecords/<app_ID> route')
+def get_applicant_jobRecord(appID):
+    current_app.logger.info('GET /jobRecords/<appID> route')
     cursor=db.get_db().cursor()
-    cursor.execute('select * from jobRecords where appID = {0}'.format(app_ID))
+    cursor.execute('select * from jobRecords where appID = {0}'.format(appID))
 
     #formatting the output
     row_headers = [x[0] for x in cursor.description]
