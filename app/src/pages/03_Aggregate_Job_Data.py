@@ -13,7 +13,7 @@ SideBarLinks()
 add_logo("assets/logo.png", height=400)
 
 # set up the page
-st.markdown("# Mapping Demo")
+st.markdown("# Aggregate Job Data")
 st.sidebar.header("Mapping Demo")
 st.write(
     """This Mapping Demo is from the Streamlit Documentation. It shows how to use
@@ -21,6 +21,15 @@ st.write(
 to display geospatial data."""
 )
 
+# TODO: Map with popular cities (attribute from jobrecords)
+
+# TODO: Top 5's for different attributes 
+
+# TODO: Average salary
+
+# TODO: Average salary per industry
+
+# TODO: 
 
 @st.cache_data
 def from_data_file(filename):
