@@ -241,7 +241,7 @@ insert into applicants (appID, fName, lName, email, prospectPos) values (238, 'A
 insert into applicants (appID, fName, lName, email, prospectPos) values (239, 'Fayre', 'Ferriby', 'fferriby6m@quantcast.com', 'Software Engineer');
 insert into applicants (appID, fName, lName, email, prospectPos) values (240, 'Rowena', 'Flay', 'rflay6n@shareasale.com', 'Data Scientist');
 insert into applicants (appID, fName, lName, email, prospectPos) values (241, 'Bret', 'Edgell', 'bedgell6o@pinterest.com', 'Software Engineer');
-insert into applicants (appID, fName, lName, email, prospectPos) values (242, 'Abramo', 'Isenor', 'aisenor6p@adobe.com', 'Customer Success Manager');
+insert into applicants (appID, fName, lName, email, prospectPos) values (242, 'Barney', 'Stinson', 'barneystinson83@adobe.com', 'PLEASE');
 insert into applicants (appID, fName, lName, email, prospectPos) values (243, 'Quinta', 'Puleque', 'qpuleque6q@ameblo.jp', 'Software Engineer');
 insert into applicants (appID, fName, lName, email, prospectPos) values (244, 'Johnette', 'Shee', 'jshee6r@who.int', 'Human Resources Specialist');
 insert into applicants (appID, fName, lName, email, prospectPos) values (245, 'Rhys', 'Girdlestone', 'rgirdlestone6s@simplemachines.org', 'Financial Analyst');
