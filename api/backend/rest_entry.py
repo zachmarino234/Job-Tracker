@@ -1,4 +1,4 @@
-gitimport logging
+import logging
 logging.basicConfig(level=logging.DEBUG)
 
 from flask import Flask
@@ -6,7 +6,7 @@ from flask import Flask
 from backend.db_connection import db
 from backend.customers.customer_routes import customers
 from backend.products.products_routes import products
-from backend.talenttrace.job_records_routes import job_records
+from backend.jobRecords.job_records_routes import job_records
 
 #adding applicants/industries blueprint
 from backend.applicants.applicants_routes import applicants

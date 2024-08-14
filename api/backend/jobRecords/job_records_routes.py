@@ -8,7 +8,7 @@ import json
 from backend.db_connection import db
 from backend.ml_models.model01 import predict
 
-job_records = Blueprint('job records', __name__)
+job_records = Blueprint('job_records', __name__)
 
 # Get all job records from the existing database
 @job_records.route('/jobRecords', methods=['GET'])
