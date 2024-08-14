@@ -6,6 +6,9 @@ SideBarLinks()
 
 st.write("# About this App")
 
+if st.sidebar.button("Go back"):
+    st.switch_page('Home.py')
+
 st.markdown (
     """
     As college students who are actively seeking internships, 
