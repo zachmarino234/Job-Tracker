@@ -88,7 +88,7 @@ def add_new_applicant():
 
 # Remove an applicant from the database
 @applicants.route('/applicants/<appID>', methods=['DELETE'])
-def get_applicant(appID):
+def remove_applicant(appID):
     current_app.logger.info('DELETE /applicants/<appID> route')
     cursor = db.get_db().cursor()
     query = '''

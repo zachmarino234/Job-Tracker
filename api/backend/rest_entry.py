@@ -13,6 +13,8 @@ from backend.applicants.applicants_routes import applicants
 from backend.industry.industry_routes import industry
 from backend.company.company_routes import company
 
+#Test
+from backend.aggData.aggregate_data_routes import aggregate
 
 import os
 from dotenv import load_dotenv
@@ -109,6 +111,8 @@ def create_app():
     app.register_blueprint(applicants, url_prefix='/a')
     app.register_blueprint(industry,url_prefix='/i')
     app.register_blueprint(company,url_prefix='/co')
+
+    app.register_blueprint(aggregate, url_prefix = '/agg' )
 
     # Don't forget to return the app object
     return app
