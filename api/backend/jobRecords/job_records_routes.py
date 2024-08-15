@@ -117,7 +117,7 @@ def get_industry_salary():
     current_app.logger.info('GET /jobRecords/industry_salary route')
     cursor=db.get_db().cursor()
     the_query = '''
-        SELECT name, AVG(salary) AS Average_Salary 
+        SELECT name, ROUND(AVG(salary),0) AS Average_Salary 
         FROM jobRecords
         NATURAL JOIN industry
         GROUP BY name
