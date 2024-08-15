@@ -22,15 +22,19 @@ def SeeAllJobs():
 def SeeAggregateData():
     st.sidebar.page_link("pages/03_Aggregate_Job_Data.py", label="See Aggregate Job Data", icon='📊')
 
-## ------------------------ Examples for Role of usaid_worker ------------------------
-def ApiTestNav():
-    st.sidebar.page_link("pages/12_API_Test.py", label="Test the API", icon='🛜')
+# -------------------------------- Sidebar for Sam -----------------------------------------------
 
-def PredictionNav():
-    st.sidebar.page_link("pages/11_Prediction.py", label="Regression Prediction", icon='📈')
+def SamNav():
+    st.sidebar.page_link("pages/14_Sam.py", label="Sam's Dashboard", icon='🛠️')
 
-def ClassificationNav():
-    st.sidebar.page_link("pages/13_Classification.py", label="Classification Demo", icon='🌺')
+def PredictNav():
+    st.sidebar.page_link("pages/04_Predictions.py", label="Predict Value Based on Regression Model", icon='📈')
+
+def ViewAPI():
+    st.sidebar.page_link("pages/12_API_Test.py", label="View the Simple API Demo", icon='🏛️')
+
+def ViewClassDemo():
+    st.sidebar.page_link("pages/02_Map_Demo.py", label="View Classification Demo", icon='⚖️️')
 
 #### ------------------------ System Admin Role ------------------------
 def AdminPageNav():
@@ -60,18 +64,19 @@ def SideBarLinks(show_home=False):
     # Show the other page navigators depending on the users' role.
     if st.session_state["authenticated"]:
 
-        # Show World Bank Link and Map Demo Link if the user is a political strategy advisor role.
+        # Show persona 1's pages (Barney).
         if st.session_state['role'] == 'applicant':
             ApplicantHomeNav()
             AddNewJob()
             SeeAllJobs()
             SeeAggregateData()
 
-        # If the user role is usaid worker, show the Api Testing page
-        if st.session_state['role'] == 'usaid_worker':
-            PredictionNav()
-            ApiTestNav() 
-            ClassificationNav()
+        # Show persona 2's pages (Sam).
+        if st.session_state['role'] == 'dept_head':
+            SamNav()
+            PredictNav() 
+            ViewAPI()
+            ViewClassDemo()
         
         # If the user is an administrator, give them access to the administrator pages
         if st.session_state['role'] == 'administrator':
@@ -86,18 +91,3 @@ def SideBarLinks(show_home=False):
             del st.session_state['role']
             del st.session_state['authenticated']
             st.switch_page('Home.py')
-
-
-# -------------------------------- Sidebar for Sam -----------------------------------------------
-
-def SamNav():
-    st.sidebar.page_link("pages/14_Sam.py", label="Sam's Dashboard", icon='🛠️')
-
-def PredictNav():
-    st.sidebar.page_link("pages/04_Predictions.py", label="Predict Value Based on Regression Model", icon='📈')
-
-def ViewAPI():
-    st.sidebar.page_link("pages/12_API_Test.py", label="View the Simple API Demo", icon='🏛️')
-
-def ViewClassDemo():
-    st.sidebar.page_link("pages/02_Map_Demo.py", label="View Classification Demo", icon='⚖️️')

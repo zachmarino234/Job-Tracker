@@ -61,7 +61,7 @@ if st.button('Act as Sam, Head of the Quantitative Analytics Department of XYZ, 
             type = 'primary', 
             use_container_width=True):
     st.session_state['authenticated'] = True
-    st.session_state['role'] = 'department_head'
+    st.session_state['role'] = 'dept_head'
     st.session_state['first_name'] = 'Sam'
     st.switch_page('pages/10_USAID_Worker_Home.py')
 
