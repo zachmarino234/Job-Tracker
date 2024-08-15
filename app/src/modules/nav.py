@@ -86,3 +86,18 @@ def SideBarLinks(show_home=False):
             del st.session_state['role']
             del st.session_state['authenticated']
             st.switch_page('Home.py')
+
+
+# -------------------------------- Sidebar for Sam -----------------------------------------------
+
+def SamNav():
+    st.sidebar.page_link("pages/14_Sam.py", label="Sam's Dashboard", icon='🛠️')
+
+def PredictNav():
+    st.sidebar.page_link("pages/04_Predictions.py", label="Predict Value Based on Regression Model", icon='📈')
+
+def ViewAPI():
+    st.sidebar.page_link("pages/12_API_Test.py", label="View the Simple API Demo", icon='🏛️')
+
+def ViewClassDemo():
+    st.sidebar.page_link("pages/02_Map_Demo.py", label="View Classification Demo", icon='⚖️️')
