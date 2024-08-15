@@ -111,7 +111,22 @@ def get_indID_jobRecord(indID):
         return theResponse       
 
     
-
+# Return industry and average salary
+@job_records.route('/jobRecords/industry_salary', methods=['GET'])
+def get_industry_salary():
+    current_app.logger.info('GET /jobRecords/industry_salary route')
+    cursor=db.get_db().cursor()
+    the_query = '''
+        SELECT name, AVG(salary) AS Average_Salary FROM jobRecords
+        JOIN industry
+        GROUP BY name
+    '''
+    cursor.execute(the_query)
+    theData = cursor.fetchall()
+    theResponse=make_response(theData)
+    theResponse.status_code = 200
+    theResponse.mimetype = 'application/json'
+    return theResponse
 
 # Adding a new job records for specified applicant
 @job_records.route('/job_records', methods=['PUT'])
