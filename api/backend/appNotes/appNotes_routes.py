@@ -12,15 +12,19 @@ appNotes = Blueprint('appNotes', __name__)
 @appNotes.route('/appNotes/<appID>', methods=['GET'])
 def get_app_notes(appID):
     current_app.logger.info('GET /appNotes/<appID> route')
-    cursor = db.get.db().cursor()
-    query = 'select * from applicantIntNotes where appID={0}'.format(appID)
-    cursor.execute(query)
+    cursor = db.get_db().cursor()
+    cursor.execute('select * from applicantIntNotes where appID={0}'.format(appID))
+    row_headers = [x[0] for x in cursor.description]
+    json_data = []
     theData = cursor.fetchall()
-    the_response = make_response(theData)
+    for row in theData:
+        json_data.append(dict(zip(row_headers, row)))
+    the_response = make_response(jsonify(json_data))
     the_response.status_code = 200
     the_response.mimetype = 'application/json'
     return the_response
 
+'''
 # Update content of a particular note for an applicant
 @appNotes.route('/appNotes/<appID>', methods=['PUT'])
 def update_app_notes(appID):
@@ -36,7 +40,9 @@ def update_app_notes(appID):
     db.get_db().commit()
     return 'note updated!'
 
+    '''
 
+'''
 # Remove a note record from the from an applicant
 @appNotes.route('/appNotes/<appID>', methods=['DELETE'])
 def remove_app_notes(appID):
@@ -51,3 +57,5 @@ def remove_app_notes(appID):
     r=cursor.execute(query, data)
     db.get_db().commit()
     return 'note updated!'
+
+    '''

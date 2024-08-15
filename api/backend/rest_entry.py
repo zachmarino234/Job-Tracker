@@ -6,14 +6,18 @@ from flask import Flask
 from backend.db_connection import db
 from backend.customers.customer_routes import customers
 from backend.products.products_routes import products
+
+# adding jobrecords/appnotes/recruiternotes Blueprint
 from backend.jobRecords.job_records_routes import job_records
-from backend.appNotes.appNotes_routes import app_notes
-from backend.recruiterNotes.recruiterNotes_routes import recruiter_notes
+from backend.appNotes.appNotes_routes import appNotes
+from backend.recruiterNotes.recruiterNotes_routes import recruiterNotes
+
 
 #adding applicants/industries/company blueprint
 from backend.applicants.applicants_routes import applicants
 from backend.industry.industry_routes import industry
 from backend.company.company_routes import company
+
 
 #Test
 from backend.aggData.aggregate_data_routes import aggregate
@@ -107,18 +111,25 @@ def create_app():
     # and give a url prefix to each
     app.register_blueprint(customers,   url_prefix='/c')
     app.register_blueprint(products,    url_prefix='/p')
-    app.register_blueprint(job_records, url_prefix='/jbr')
+    
 
     #URL prefix for applicants/industries
+    
     app.register_blueprint(applicants, url_prefix='/a')
     app.register_blueprint(industry,url_prefix='/i')
     app.register_blueprint(company,url_prefix='/co')
 
+    
+
     app.register_blueprint(aggregate, url_prefix = '/agg' )
 
-    #URL prefix for notes (both recruiters and applicants)
-    app.register_blueprint(app_notes, url_prefix = '/an')
-    app.register_blueprint(recruiter_notes, url_prefix = '/rn')
+    
+    #URL prefix for notes (both recruiters and applicants) and job records
+    app.register_blueprint(job_records, url_prefix='/jbr')
+    app.register_blueprint(appNotes, url_prefix = '/an')
+    app.register_blueprint(recruiterNotes, url_prefix = '/rn')
+
+    
 
     # Don't forget to return the app object
     return app

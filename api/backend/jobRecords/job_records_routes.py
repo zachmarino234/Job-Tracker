@@ -39,17 +39,19 @@ def get_applicant_jobRecord(appID):
     current_app.logger.info('GET /jobRecords/<appID> route')
     cursor=db.get_db().cursor()
     cursor.execute('select * from jobRecords where appID = {0}'.format(appID))
-
+    
     #formatting the output
     row_headers = [x[0] for x in cursor.description]
     json_data = []
     theData = cursor.fetchall()
     for row in theData:
         json_data.append(dict(zip(row_headers, row)))
-        theResponse=make_response(jsonify(json_data))
-        theResponse.status_code = 200
-        theResponse.mimetype = 'application/json'
-        return theResponse
+    theResponse=make_response(jsonify(json_data))
+    theResponse.status_code = 200
+    theResponse.mimetype = 'application/json'
+    return theResponse
+
+        
     
 
 # Return all the jobs within a company
