@@ -94,19 +94,26 @@ def get_indID_jobRecord(indID):
 
 
 # Adding a new job records for specified applicant
-@job_records.route('/job_records', methods=['PUT'])
+@job_records.route('/job_records', methods=['POST'])
 def add_specified_job_records():
-    current_app.logger.info('PUT /job_records_route')
+    current_app.logger.info('POST /job_records_route')
     jobRecords_info = request.json
 
     #current_app.logger.info(jobRecords_info)
-    job_ID = jobRecords_info['jobID']
+
+    #since auto-increment not needed??
+    #job_ID = jobRecords_info['jobID']
+
+
     app_ID = jobRecords_info['appID']
     ind_ID = jobRecords_info['indID']
     company_ID = jobRecords_info['companyID']
     job_title = jobRecords_info['jobTitle']
     salary = jobRecords_info['salary']
-    date_applied = jobRecords_info['dateApplied']
+
+    #also defaulted to today
+    #date_applied = jobRecords_info['dateApplied']
+
     description = jobRecords_info['description']
     pos_level = jobRecords_info['posLevel']
     job_type = jobRecords_info['jobType']
@@ -116,14 +123,14 @@ def add_specified_job_records():
 
 
     # Query to update this info
-    query = 'insert into jobRecords (jobID, appID, indID, companyID, jobTitle, salary, dateApplied, description, posLevel, jobType, jobAddress, jobCity, jobCountry) values ("'
-    query += job_ID + '", "'
+    query = 'insert into jobRecords (appID, indID, companyID, jobTitle, salary, description, posLevel, jobType, jobAddress, jobCity, jobCountry) values ("'
+    #query += job_ID + '", "'
     query += app_ID + '", "'
     query += ind_ID + '", '
     query += company_ID + '", '
     query += job_title + '", '
     query += salary + '", '
-    query += date_applied + '", '
+    #query += date_applied + '", '
     query += description + '", '
     query += pos_level + '", '
     query += job_type + '", '
@@ -134,7 +141,7 @@ def add_specified_job_records():
     cursor = db.get_db().cursor()
     r = cursor.execute(query)
     db.get_db().commit()
-    return 'Job record updated'
+    return 'Job record added'
 
 
 # Remove a record for a certain applicant

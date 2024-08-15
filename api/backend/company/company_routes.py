@@ -44,13 +44,13 @@ def update_customer():
 
 # Get company details for company with particular companyID
 @company.route('/company/<companyID>', methods=['GET'])
-def get_company(appID):
+def get_company(companyID):
     current_app.logger.info('GET /company/<companyID> route')
     cursor = db.get_db().cursor()
     query = '''
         SELECT *
         FROM company
-        WHERE appID = {0}'''.format(appID)
+        WHERE companyID = {0}'''.format(companyID)
     cursor.execute(query)
     theData = cursor.fetchall()
     the_response = make_response(theData)
