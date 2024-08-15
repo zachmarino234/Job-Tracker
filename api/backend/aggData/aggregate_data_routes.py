@@ -43,3 +43,22 @@ def get_industry_salary():
     theResponse.status_code = 200
     theResponse.mimetype = 'application/json'
     return theResponse
+
+# Return top 10 countries by 
+@aggregate.route('/country_count', methods=['GET'])
+def get_country_count():
+    current_app.logger.info('GET country_count route')
+    cursor=db.get_db().cursor()
+    the_query = '''
+        SELECT jobCountry AS Country, COUNT(jobID) AS Count FROM jobRecords
+        WHERE jobCountry IS NOT NULL
+        GROUP BY jobCountry
+        ORDER BY COUNT(jobID) DESC
+        LIMIT 10;
+    '''
+    cursor.execute(the_query)
+    theData = cursor.fetchall()
+    theResponse=make_response(theData)
+    theResponse.status_code = 200
+    theResponse.mimetype = 'application/json'
+    return theResponse
