@@ -1,5 +1,6 @@
 import logging
 logger = logging.getLogger(__name__)
+import requests
 import streamlit as st
 from streamlit_extras.app_logo import add_logo
 import pandas as pd
@@ -21,93 +22,52 @@ st.write(
 to display geospatial data."""
 )
 
-# TODO: Map with popular cities (attribute from jobrecords)
-
 # TODO: Top 5's for different attributes 
 
 # TODO: Average salary
 
-# TODO: Average salary per industry
-
 # TODO: 
 
-@st.cache_data
-def from_data_file(filename):
-    url = (
-        "http://raw.githubusercontent.com/streamlit/"
-        "example-data/master/hello/v1/%s" % filename
-    )
-    return pd.read_json(url)
+import streamlit as st
+import pandas as pd
+import numpy as np
+import pydeck as pdk
 
+st.header("Popular Countries")
+map_data = pd.DataFrame(
+   #TODO: Map with popular countries (attribute from jobrecords)
+)
 
-try:
-    ALL_LAYERS = {
-        "Bike Rentals": pdk.Layer(
-            "HexagonLayer",
-            data=from_data_file("bike_rental_stats.json"),
-            get_position=["lon", "lat"],
-            radius=200,
-            elevation_scale=4,
-            elevation_range=[0, 1000],
-            extruded=True,
+st.pydeck_chart(
+    pdk.Deck(
+        map_style=None,
+        initial_view_state=pdk.ViewState(
+            latitude=0,
+            longitude=0,
+            zoom=1,
+            pitch=40,
         ),
-        "Bart Stop Exits": pdk.Layer(
-            "ScatterplotLayer",
-            data=from_data_file("bart_stop_stats.json"),
-            get_position=["lon", "lat"],
-            get_color=[200, 30, 0, 160],
-            get_radius="[exits]",
-            radius_scale=0.05,
-        ),
-        "Bart Stop Names": pdk.Layer(
-            "TextLayer",
-            data=from_data_file("bart_stop_stats.json"),
-            get_position=["lon", "lat"],
-            get_text="name",
-            get_color=[0, 0, 0, 200],
-            get_size=15,
-            get_alignment_baseline="'bottom'",
-        ),
-        "Outbound Flow": pdk.Layer(
-            "ArcLayer",
-            data=from_data_file("bart_path_stats.json"),
-            get_source_position=["lon", "lat"],
-            get_target_position=["lon2", "lat2"],
-            get_source_color=[200, 30, 0, 160],
-            get_target_color=[200, 30, 0, 160],
-            auto_highlight=True,
-            width_scale=0.0001,
-            get_width="outbound",
-            width_min_pixels=3,
-            width_max_pixels=30,
-        ),
-    }
-    st.sidebar.markdown("### Map Layers")
-    selected_layers = [
-        layer
-        for layer_name, layer in ALL_LAYERS.items()
-        if st.sidebar.checkbox(layer_name, True)
-    ]
-    if selected_layers:
-        st.pydeck_chart(
-            pdk.Deck(
-                map_style="mapbox://styles/mapbox/light-v9",
-                initial_view_state={
-                    "latitude": 37.76,
-                    "longitude": -122.4,
-                    "zoom": 11,
-                    "pitch": 50,
-                },
-                layers=selected_layers,
+        layers=[
+            pdk.Layer(
+                "HexagonLayer",
+                data=map_data,
+                get_position="[lon, lat]",
+                radius=200,
+                elevation_scale=4,
+                elevation_range=[0, 1000],
+                pickable=True,
+                extruded=True,
             )
-        )
-    else:
-        st.error("Please choose at least one layer above.")
-except URLError as e:
-    st.error(
-        """
-        **This demo requires internet access.**
-        Connection error: %s
-    """
-        % e.reason
+        ],
     )
+)
+
+st.header("Average Salary per Industry")
+chart_data = pd.DataFrame(
+    # TODO: Average salary per industry
+    requests.get('http://api:4000/jbr/jobRecords').json()
+)
+avg_salaries = chart_data.groupby('indID')['salary'].mean().reset_index()
+avg_salaries.rename(columns={'indID': 'industry'}, inplace = True)
+
+st.bar_chart(avg_salaries, x='industry', y='salary')
