@@ -27,14 +27,14 @@ def SeeAggregateData():
 def SamNav():
     st.sidebar.page_link("pages/14_Sam.py", label="Sam's Dashboard", icon='🛠️')
 
-def PredictNav():
-    st.sidebar.page_link("pages/04_Predictions.py", label="Predict Value Based on Regression Model", icon='📈')
+def viewRecruiterNotes():
+    st.sidebar.page_link("pages/14_Recruiter_Notes.py", label="View Your Notes", icon='📝')
 
-def ViewAPI():
-    st.sidebar.page_link("pages/12_API_Test.py", label="View the Simple API Demo", icon='🏛️')
+def viewApplicantData():
+    st.sidebar.page_link("pages/14_Applicant_Data.py", label="Who applied recently?", icon='📥')
 
-def ViewClassDemo():
-    st.sidebar.page_link("pages/02_Map_Demo.py", label="View Classification Demo", icon='⚖️️')
+def viewJobTrend():
+    st.sidebar.page_link("pages/14_New_Job_Trend.py", label="What's new on the market?", icon='📊')
 
 #### ------------------------ System Admin Role ------------------------
 def AdminPageNav():
@@ -74,9 +74,9 @@ def SideBarLinks(show_home=False):
         # Show persona 2's pages (Sam).
         if st.session_state['role'] == 'dept_head':
             SamNav()
-            PredictNav() 
-            ViewAPI()
-            ViewClassDemo()
+            viewRecruiterNotes() 
+            viewApplicantData()
+            viewJobTrend()
         
         # If the user is an administrator, give them access to the administrator pages
         if st.session_state['role'] == 'administrator':
