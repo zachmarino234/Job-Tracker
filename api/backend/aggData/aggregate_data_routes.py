@@ -44,7 +44,7 @@ def get_industry_salary():
     theResponse.mimetype = 'application/json'
     return theResponse
 
-# Return top 10 countries by 
+# Return top 10 countries by amount of job records
 @aggregate.route('/country_count', methods=['GET'])
 def get_country_count():
     current_app.logger.info('GET country_count route')
@@ -54,7 +54,26 @@ def get_country_count():
         WHERE jobCountry IS NOT NULL
         GROUP BY jobCountry
         ORDER BY COUNT(jobID) DESC
-        LIMIT 10;
+        LIMIT 10
+    '''
+    cursor.execute(the_query)
+    theData = cursor.fetchall()
+    theResponse=make_response(theData)
+    theResponse.status_code = 200
+    theResponse.mimetype = 'application/json'
+    return theResponse
+
+# Return top 10 most popular employers
+@aggregate.route('/popular_employers', methods=['GET'])
+def get_popular_employers():
+    current_app.logger.info('GET popular_employers route')
+    cursor=db.get_db().cursor()
+    the_query = '''
+        SELECT name, COUNT(jobRecords.companyID) FROM jobRecords
+        JOIN company ON jobRecords.companyID = company.companyID
+        GROUP BY name
+        ORDER BY COUNT(jobRecords.companyID) DESC 
+        LIMIT 10
     '''
     cursor.execute(the_query)
     theData = cursor.fetchall()

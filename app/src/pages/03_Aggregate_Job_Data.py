@@ -39,3 +39,9 @@ chart = alt.Chart(chart_data).mark_bar().encode(
 st.header("Average Salary per Industry")
 st.altair_chart(chart, use_container_width=True)
 
+st.header("Most Popular Employers")
+employer_data = pd.DataFrame(
+   requests.get('http://api:4000/agg/popular_employers').json()
+)
+
+st.dataframe(employer_data, use_container_width=True)
