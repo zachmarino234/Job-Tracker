@@ -26,9 +26,9 @@ def get_app_notes(appID):
 def update_app_notes(appID):
     current_app.logger.info('PUT /appNotes route')
     app_info = request.json
-    content = content['content']
-    app_id = app_id['appID']
-    interview_ID = interview_ID['interviewID']
+    content = app_info['content']
+    app_id = app_info['appID']
+    interview_ID = app_info['interviewID']
     query = 'update applicantIntNotes set content = %s where appID = {0}'.format(appID)
     data = (content, app_id, interview_ID)
     cursor = db.get_db().cursor()
