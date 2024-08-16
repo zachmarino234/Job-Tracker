@@ -17,14 +17,19 @@ st.write('### What would you like to do today?')
 if st.button('See Applicants Data', 
              type='primary',
              use_container_width=True):
-  st.switch_page('pages/11_Prediction.py')
+  st.switch_page('pages/14_Applicant_Data')
 
-if st.button('View the Simple API Demo', 
+if st.button('View Your Notes', 
              type='primary',
              use_container_width=True):
-  st.switch_page('pages/12_API_Test.py')
+  st.switch_page('pages/14_Recruiter_Notes')
 
-if st.button("View Classification Demo",
+if st.button("Add new notes",
              type='primary',
              use_container_width=True):
-  st.switch_page('pages/13_Classification.py')
+  st.switch_page('pages/14_New_RecNotes')
+
+if st.button("What's new on the market",
+             type='primary',
+             use_container_width=True):
+  st.switch_page('pages/14_New_Job_Trend')

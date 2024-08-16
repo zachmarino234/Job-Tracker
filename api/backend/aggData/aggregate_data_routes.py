@@ -26,6 +26,28 @@ def get_most_popular_industries():
     return the_response
 
 
+# Get top positions from other firms
+@aggregate.route('/lucrativeposition', methods=['GET'])
+def get_most_lucrative_positions():
+    cursor = db.get_db().cursor()
+    query = '''
+        select c.name as Firm_Name, j.salary as Salary, sum(jobID) as Number_of_Applications, j.jobTitle as Title
+        from jobRecords j
+        join company c on j.companyID = c.companyID
+        where salary is not null
+        group by c.name, j.companyID, j.salary, j.jobTitle
+        order by salary desc
+        limit 50;
+
+    '''
+    cursor.execute(query)
+    theData = cursor.fetchall()
+    the_response = make_response(theData)
+    the_response.status_code = 200
+    the_response.mimetype = 'application/json'
+    return the_response
+
+
 # Return industry and average salary
 @aggregate.route('/industry_salary', methods=['GET'])
 def get_industry_salary():

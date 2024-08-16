@@ -12,7 +12,6 @@ SideBarLinks()
 st.markdown("# All applicants")
 
 
-#TODO: this table needs to show Job title, Company Name, Industry, date applied, description, job address, city, country, poslevel, salary
 data = {} 
 try:
   data = requests.get('http://api:4000/a/applicants').json()

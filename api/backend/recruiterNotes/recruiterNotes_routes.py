@@ -8,12 +8,12 @@ from backend.ml_models.model01 import predict
 
 recruiterNotes = Blueprint('recruiterNotes', __name__)
 
-# Access all notes made by a certain recruiter
-@recruiterNotes.route('/recruiterNotes/<recruiterID>', methods=['GET'])
-def get_recruiterNotes(recruiterID):
+# Access all notes made by recruiters
+@recruiterNotes.route('/recruiterNotes', methods=['GET'])
+def get_recruiterNotes():
     current_app.logger.info('recruiterNotes.routes.py: GET /recruiterNotes')
     cursor = db.get_db().cursor()
-    cursor.execute('select * from recruiterIntNotes where recruiterID = {0}'.format(recruiterID))
+    cursor.execute('select * from recruiterIntNotes')
     theData = cursor.fetchall()
     the_response = make_response(theData)
     the_response.status_code = 200
@@ -53,4 +53,35 @@ def remove_recruiterNotes(recruiterID):
     the_response.status_code = 200
     the_response.mimetype = 'application/json'
     return the_response
+
+# Creating a new note for a recruiter
+@recruiterNotes.route('recruiterNotes', methods=['POST'])
+def add_new_recruiter_note():
+
+    #collecting data from request object
+    app_info = request.json
+    current_app.logger.info(app_info)
+
+    #get variable
+    interview_ID = app_info['interviewID']
+    recruiter_ID = app_info['recruiterID']
+    compensation_range = app_info['compensation_range']
+    role = app_info['role']
+    popular_skill= app_info['popularSkill']
+
+    # Constructing the query
+    query = 'insert into applicants (fName, lName, email, prospect_pos) values ("'
+    query += interview_ID + '", "'
+    query += recruiter_ID + '", "'
+    query += compensation_range + '", '
+    query += role + '", '
+    query += popular_skill + ')'
+    current_app.logger.info(query)
+
+    # executing and committing the insert statement 
+    cursor = db.get_db().cursor()
+    cursor.execute(query)
+    db.get_db().commit()
+    
+    return 'Note added !'
     

@@ -28,7 +28,10 @@ def SamNav():
     st.sidebar.page_link("pages/14_Sam.py", label="Sam's Dashboard", icon='🛠️')
 
 def viewRecruiterNotes():
-    st.sidebar.page_link("pages/14_Recruiter_Notes.py", label="View Your Notes", icon='📝')
+    st.sidebar.page_link("pages/14_Recruiter_Notes.py", label="View Your Notes", icon='🔎')
+
+def addRecruiterNotes():
+    st.sidebar.page_link("pages/14_New_RecNotes.py", label="Add New Notes", icon='📝')
 
 def viewApplicantData():
     st.sidebar.page_link("pages/14_Applicant_Data.py", label="Who applied recently?", icon='📥')
@@ -75,6 +78,7 @@ def SideBarLinks(show_home=False):
         if st.session_state['role'] == 'dept_head':
             SamNav()
             viewRecruiterNotes() 
+            addRecruiterNotes()
             viewApplicantData()
             viewJobTrend()
         

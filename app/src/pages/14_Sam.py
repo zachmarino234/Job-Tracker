@@ -19,6 +19,11 @@ if st.button('View your notes',
              use_container_width=True):
   st.switch_page('pages/14_Recruiter_Notes.py')
 
+if st.button('Add new notes', 
+             type='primary',
+             use_container_width=True):
+  st.switch_page('pages/14_New_RecNotes.py')
+
 if st.button('View applicants', 
              type='primary',
              use_container_width=True):
