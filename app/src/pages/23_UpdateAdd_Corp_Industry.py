@@ -70,7 +70,7 @@ with st.form("Add Company"):
         if response.status_code == 200:
             st.toast('Success!')
         else:
-            st.toast('Failed - please try again')
+            st.toast('Failed - ' + str(response.status_code))
 
 
 st.markdown("### Update Industry")
@@ -87,7 +87,12 @@ with st.form("Update Industry"):
         ind_info["name"] = indName
         ind_info["size"] = indSize
         st.success("Industry updated")
-        requests.put(f'http://api:4000/i/industry', json = ind_info)
+        response = requests.put(f'http://api:4000/i/industry', json = ind_info)
+    
+        if response.status_code == 200:
+            st.toast('Success!')
+        else:
+            st.toast('Failed - ' + str(response.status_code))
 
 
 st.markdown("### Add Industry")
@@ -102,4 +107,9 @@ with st.form("Add Industry"):
         ind_info["name"] = indName
         ind_info["size"] = indSize
         st.success("Industry added")
-        requests.post(f'http://api:4000/i/industry', json = ind_info)
+        response = requests.post(f'http://api:4000/i/industry', json = ind_info)
+
+        if response.status_code == 200:
+            st.toast('Success!')
+        else:
+            st.toast('Failed - ' + str(response.status_code))

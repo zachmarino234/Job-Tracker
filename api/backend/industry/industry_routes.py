@@ -31,9 +31,9 @@ def update_industry():
     name = ind_info['name']
     size = ind_info['size']
     query = 'UPDATE industry SET name = %s, size = %s where indID = %s'
-    data = (ind_id, name, size)
+    values = (name, size, ind_id)
     cursor = db.get_db().cursor()
-    r = cursor.execute(query, data)
+    r = cursor.execute(query, values)
     db.get_db().commit()
     return 'industry updated!'
 
@@ -66,15 +66,16 @@ def add_new_industry():
     size = ind_info['size']
 
     # Constructing the query
-    query = 'insert into industry (name, size) values ("'
-    #query += ind_id + '", "'
-    query += name + '", "'
-    query += size + ')'
+    query = 'insert into industry (name, size) values (%s, %s)'
+    values = (
+        name,
+        size
+    )
     current_app.logger.info(query)
 
     # executing and committing the insert statement 
     cursor = db.get_db().cursor()
-    cursor.execute(query)
+    cursor.execute(query, values)
     db.get_db().commit()
     
     return 'Success!'
