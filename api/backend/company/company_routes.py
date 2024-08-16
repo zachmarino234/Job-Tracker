@@ -98,6 +98,7 @@ def remove_company(companyID):
         DELETE FROM company
         WHERE companyID = {0}'''.format(companyID)
     cursor.execute(query)
+    db.get_db().commit()
     theData = cursor.fetchall()
     the_response = make_response(theData)
     the_response.status_code = 200
