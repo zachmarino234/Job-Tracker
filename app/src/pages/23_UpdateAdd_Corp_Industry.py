@@ -56,7 +56,7 @@ if add_corp:
         add_company = st.form_submit_button("Add Company")
         if add_company:
             corp_info = {}
-            corp_info["companyID"] = companyID
+            #corp_info["companyID"] = companyID
             corp_info["name"] = name
             corp_info["numEmployees"] = num_emps
             corp_info["foundingDate"] = founding_date
@@ -94,7 +94,7 @@ if add_ind:
         
         if add_industry:
             ind_info = {}
-            ind_info["indID"] = indID
+            #ind_info["indID"] = indID
             ind_info["name"] = indName
             ind_info["size"] = indSize
             st.success("Industry added")

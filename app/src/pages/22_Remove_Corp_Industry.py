@@ -13,15 +13,41 @@ delete_corp = st.button('Delete Company')
 
 delete_ind = st.button('Delete Industry')
 
-
+delete_corp = True
 
 if delete_corp:
     with st.form("Remove Company"):
-        companyID = st.number_input("Company ID", step =1, format = "%d")
+        companyID = st.number_input("Company ID", step=1, format="%d")
         remove_company = st.form_submit_button("Remove Company")
+        
         if remove_company:
-            st.success("Company removed")
-            requests.delete(f'http://api:4000/co/company/{companyID}')
+            st.success("Attempting to remove company...")
+            try:
+                response = requests.delete(f'http://api:4000/co/company/{companyID}')
+                st.write(f"Response status code: {response.status_code}")  # For debugging
+                
+                if response.status_code == 200:
+                    st.toast('Success!')
+                    st.success("Company removed successfully.")
+                else:
+                    st.toast('Failed - please try again')
+                    st.error(f"Failed to remove company. Error: {response.status_code}")
+            except Exception as e:
+                st.error(f"An error occurred: {e}")
+
+
+# if delete_corp:
+#     with st.form("Remove Company"):
+#         companyID = st.number_input("Company ID", step =1, format = "%d")
+#         remove_company = st.form_submit_button("Remove Company")
+#         if remove_company:
+#             st.success("Company removed")
+#             response =requests.delete(f'http://api:4000/co/company/{companyID}')
+
+#             if response.status_code == 200:
+#                 st.toast('Success!')
+#             else:
+#                 st.toast('Failed - please try again')
 
 if delete_ind:
     with st.form("Remove Industry"):

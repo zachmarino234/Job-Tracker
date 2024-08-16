@@ -61,13 +61,13 @@ def add_new_industry():
     current_app.logger.info(ind_info)
 
     #extracting the variable
-    ind_id = ind_info['indID']
+    #ind_id = ind_info['indID']
     name = ind_info['name']
     size = ind_info['size']
 
     # Constructing the query
-    query = 'insert into industry (indID, name, size) values ("'
-    query += ind_id + '", "'
+    query = 'insert into industry (name, size) values ("'
+    #query += ind_id + '", "'
     query += name + '", "'
     query += size + ')'
     current_app.logger.info(query)

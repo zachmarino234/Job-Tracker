@@ -91,7 +91,7 @@ def add_new_company():
 
 # Remove a company from the database
 @company.route('/company/<companyID>', methods=['DELETE'])
-def remove_applicant(companyID):
+def remove_company(companyID):
     current_app.logger.info('DELETE /company/<companyID> route')
     cursor = db.get_db().cursor()
     query = '''
