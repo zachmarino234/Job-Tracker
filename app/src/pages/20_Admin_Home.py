@@ -5,16 +5,16 @@ import streamlit as st
 from modules.nav import SideBarLinks
 import requests
 
-st.set_page_config(layout = 'wide')
-
+# Page setup
+st.set_page_config(layout = 'wide', page_icon='assets/logo.png')
 SideBarLinks()
 
 st.title('System Admin Home Page')
 
-if st.button('Update ML Models', 
+if st.button('See Aggregate Job Data', 
              type='primary',
              use_container_width=True):
-  st.switch_page('pages/21_ML_Model_Mgmt.py')
+  st.switch_page('pages/03_Aggregate_Job_Data.py')
 
 if st.button('Update/Add a Company or Industry', 
              type='primary',

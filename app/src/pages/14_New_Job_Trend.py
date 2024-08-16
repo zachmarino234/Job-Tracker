@@ -6,10 +6,11 @@ import pydeck as pdk
 import altair as alt
 from urllib.error import URLError
 from modules.nav import SideBarLinks
+
+# Page setup
+st.set_page_config(layout = 'wide', page_icon='assets/logo.png')
 SideBarLinks()
 
-
-# set up the page
 st.markdown("# What's new in the job market?")
 
 
