@@ -6,7 +6,8 @@ from modules.nav import SideBarLinks
 
 st.set_page_config(layout = 'wide')
 
-# Show appropriate sidebar links for the role of the currently logged in user
+# Page setup
+st.set_page_config(layout = 'wide', page_icon='assets/logo.png')
 SideBarLinks()
 
 st.title(f"Welcome Recruiter, {st.session_state['first_name']}.")

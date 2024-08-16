@@ -5,8 +5,8 @@ import streamlit as st
 from modules.nav import SideBarLinks
 import requests
 
-st.set_page_config(layout = 'wide')
-
+# Page setup
+st.set_page_config(layout = 'wide', page_icon='assets/logo.png')
 SideBarLinks()
 
 st.title('System Admin Home Page')

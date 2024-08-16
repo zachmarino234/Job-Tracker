@@ -13,6 +13,7 @@ SideBarLinks()
 st.header('Add New Job Entry')
 st.write(f"### Job Data pulled from TalentTrace Job Extension")
 
+# Add job entry form
 with st.form("Add New Job Entry"):
     appID = st.number_input("Applicant ID", value = 242)
     indID = st.number_input("Industry ID", value = 3)
@@ -26,6 +27,7 @@ with st.form("Add New Job Entry"):
     jobCity = st.text_input("City", value="New York", placeholder="Enter a city...", label_visibility="visible")
     jobCountry = st.text_input("Country", value="United States", placeholder="Enter a country...", label_visibility="visible")
     
+    # Submit button
     added_job = st.form_submit_button("Add Job Entry")
 
     if added_job:
@@ -44,6 +46,7 @@ with st.form("Add New Job Entry"):
 
         response = requests.post('http://api:4000/jbr/job_records', json = job)
 
+        # Confirmation message
         if response.status_code == 200:
             st.toast('Success!')
         else:
