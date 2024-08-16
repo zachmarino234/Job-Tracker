@@ -6,7 +6,9 @@ from streamlit_extras.app_logo import add_logo
 from modules.nav import SideBarLinks
 import datetime
 import json
-# Call the SideBarLinks from the nav module in the modules directory
+
+# Page setup
+st.set_page_config(layout = 'wide', page_icon='assets/logo.png')
 SideBarLinks()
 
 # set the header of the page
