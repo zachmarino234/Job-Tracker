@@ -22,6 +22,9 @@ def SeeAllJobs():
 def SeeAggregateData():
     st.sidebar.page_link("pages/03_Aggregate_Job_Data.py", label="See Aggregate Job Data", icon='📊')
 
+def DeleteAccount():
+    st.sidebar.page_link("pages/04_Delete_Account.py", label = "Delete Your Account", icon = '🚫')
+
 # -------------------------------- Sidebar for Sam -----------------------------------------------
 
 def SamNav():
@@ -70,6 +73,7 @@ def SideBarLinks(show_home=False):
             AddNewJob()
             SeeAllJobs()
             SeeAggregateData()
+            DeleteAccount()
 
         # Show persona 2's pages (Sam).
         if st.session_state['role'] == 'dept_head':

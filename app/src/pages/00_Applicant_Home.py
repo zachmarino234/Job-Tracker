@@ -28,3 +28,8 @@ if st.button('See Aggregate Job Data',
              type='primary',
              use_container_width=True):
   st.switch_page('pages/03_Aggregate_Job_Data.py')
+
+if st.button('Delete Your Account',
+             type='primary',
+             use_container_width=True):
+  st.switch_page('pages/04_Delete_Account.py')
