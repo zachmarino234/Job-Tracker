@@ -93,3 +93,19 @@ def remove_applicant(indID):
     the_response.status_code = 200
     the_response.mimetype = 'application/json'
     return the_response
+
+# Update an industry in database
+@industry.route('/industry', methods=['PUT'])
+def update_industry():
+    current_app.logger.info('PUT /industry route')
+    ind_info = request.json
+    # current_app.logger.info(cust_info)
+    indID = ind_info['indID']
+    name = ind_info['first_name']
+    size = ind_info['size']
+    query = 'UPDATE industry SET name = %s, size = %s where indId = %s'
+    data = (name, size, indID)
+    cursor = db.get_db().cursor()
+    r = cursor.execute(query, data)
+    db.get_db().commit()
+    return 'industry updated!'

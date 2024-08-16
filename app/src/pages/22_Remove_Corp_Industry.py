@@ -13,6 +13,8 @@ delete_corp = st.button('Delete Company')
 
 delete_ind = st.button('Delete Industry')
 
+
+
 if delete_corp:
     with st.form("Remove Company"):
         companyID = st.number_input("Company ID", step =1, format = "%d")
