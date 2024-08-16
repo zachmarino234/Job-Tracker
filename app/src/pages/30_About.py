@@ -25,6 +25,3 @@ st.markdown (
     Logo created in Adobe Illustrator by Zach :)
     """
         )
-
-if st.sidebar.button("Go Back"):
-    st.switch_page('Home.py')
