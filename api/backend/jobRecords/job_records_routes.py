@@ -33,24 +33,6 @@ def get_all_job_records():
     return theResponse
 
 
-# Return all the jobs that a certain applicant has applied to
-@job_records.route('/jobRecords/appID/<appID>', methods=['GET'])
-def get_applicant_jobRecord(appID):
-    current_app.logger.info('GET /jobRecords/<appID> route')
-    cursor=db.get_db().cursor()
-    cursor.execute('select * from jobRecords where appID = {0}'.format(appID))
-
-    
-    theData = cursor.fetchall()
-    the_response = make_response(theData)
-    the_response.status_code = 200
-    the_response.mimetype = 'application/json'
-    return the_response
-
-    
-
-
-
 # Return all the jobs within a company
 @job_records.route('/jobRecords/companyID/<companyID>', methods=['GET'])
 def get_company_jobRecord(companyID):
