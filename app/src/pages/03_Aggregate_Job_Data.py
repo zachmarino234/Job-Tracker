@@ -9,21 +9,21 @@ import altair as alt
 from urllib.error import URLError
 from modules.nav import SideBarLinks
 
+# Page setup
+st.set_page_config(layout = 'wide', page_icon='assets/logo.png')
 SideBarLinks()
-
-# add the logo
 add_logo("assets/logo.png", height=400)
 
+# Most popular countries
 st.header("Most Popular Countries")
 country_data = pd.DataFrame(
-   #TODO: Map with popular countries
    requests.get('http://api:4000/agg/country_count').json()
 )
 
 st.dataframe(country_data, use_container_width=True, column_order=('Country', 'Count'))
 
+# Average salary for each industry
 chart_data = pd.DataFrame(
-    # TODO: Average salary per industry
     requests.get('http://api:4000/agg/industry_salary').json()
 )
 
@@ -39,9 +39,19 @@ chart = alt.Chart(chart_data).mark_bar().encode(
 st.header("Average Salary per Industry")
 st.altair_chart(chart, use_container_width=True)
 
+# Most popular employers
 st.header("Most Popular Employers")
 employer_data = pd.DataFrame(
    requests.get('http://api:4000/agg/popular_employers').json()
 )
 
 st.dataframe(employer_data, use_container_width=True)
+
+# Most popular industries (our mock data has each industry associated with 100 records
+# so the results will be the same aka not a bug)
+st.header("Most Popular Industries")
+industry_data = pd.DataFrame(
+   requests.get('http://api:4000/agg/mostpopularinds').json()
+)
+
+st.dataframe(industry_data, use_container_width=True, column_order=('Industry', 'Count'))
