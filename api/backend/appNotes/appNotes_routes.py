@@ -49,6 +49,7 @@ def remove_app_notes(appID):
         DELETE FROM applicantIntNotes
         WHERE appID = {0}'''.format(appID)
     cursor.execute(query)
+    db.get_db().commit()
     theData = cursor.fetchall()
     the_response = make_response(theData)
     the_response.status_code = 200

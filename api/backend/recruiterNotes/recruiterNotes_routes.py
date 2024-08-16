@@ -48,6 +48,7 @@ def remove_recruiterNotes(recruiterID):
         DELETE FROM recruiterIntNotes
         WHERE appID = {0}'''.format(recruiterID)
     cursor.execute(query)
+    db.get_db().commit()
     theData = cursor.fetchall()
     the_response = make_response(theData)
     the_response.status_code = 200

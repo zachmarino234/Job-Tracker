@@ -95,6 +95,7 @@ def remove_applicant(appID):
         DELETE FROM applicants
         WHERE appID = {0}'''.format(appID)
     cursor.execute(query)
+    db.get_db().commit()
     theData = cursor.fetchall()
     the_response = make_response(theData)
     the_response.status_code = 200
