@@ -6,6 +6,7 @@ from streamlit_extras.app_logo import add_logo
 from modules.nav import SideBarLinks
 
 # Call the SideBarLinks from the nav module in the modules directory
+st.set_page_config(layout = 'wide', page_icon='assets/logo.png')
 SideBarLinks()
 
 # set the header of the page
@@ -58,4 +59,9 @@ with st.form("Add New Job Entry"):
         job['jobCity'] = jobCity
         job['jobCountry'] = jobCountry
 
-        requests.post('http://api:4000/jbr/jobEntries', json = job)
+        response = requests.post('http://api:4000/jbr/job_records', json = job)
+
+        if response.status_code == 200:
+            st.toast('Success!')
+        else:
+            st.toast('Failed - please try again')

@@ -123,23 +123,24 @@ def add_specified_job_records():
 
 
     # Query to update this info
-    query = 'insert into jobRecords (appID, indID, companyID, jobTitle, salary, description, posLevel, jobType, jobAddress, jobCity, jobCountry) values ("'
-    #query += job_ID + '", "'
-    query += app_ID + '", "'
-    query += ind_ID + '", '
-    query += company_ID + '", '
-    query += job_title + '", '
-    query += salary + '", '
-    #query += date_applied + '", '
-    query += description + '", '
-    query += pos_level + '", '
-    query += job_type + '", '
-    query += job_address + '", '
-    query += job_city + '", '
-    query += job_country + ')'
+    query = 'insert into jobRecords (appID, indID, companyID, jobTitle, salary, description, posLevel, jobType, jobAddress, jobCity, jobCountry) values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'
+    values = (
+    app_ID,
+    ind_ID,
+    company_ID,
+    job_title,
+    salary,
+    description,
+    pos_level,
+    job_type,
+    job_address,
+    job_city,
+    job_country
+    )
+
     current_app.logger.info(query)
     cursor = db.get_db().cursor()
-    r = cursor.execute(query)
+    r = cursor.execute(query, values)
     db.get_db().commit()
     return 'Job record added'
 
