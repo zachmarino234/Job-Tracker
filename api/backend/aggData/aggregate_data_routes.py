@@ -5,12 +5,13 @@ from backend.ml_models.model01 import predict
 
 aggregate = Blueprint('aggregate', __name__)
 
-# Get all applicants from the DB
+# Get top 5 most popular industries (our mock data has each industry associated with 100 records
+# so the results will be the same aka not a bug)
 @aggregate.route('/mostpopularinds', methods=['GET'])
 def get_most_popular_industries():
     cursor = db.get_db().cursor()
     query = '''
-        SELECT i.name, COUNT(*) AS count
+        SELECT i.name AS Industry, COUNT(*) AS Count
         FROM jobRecords jr 
         JOIN industry i ON jr.indID = i.indID
         GROUP BY i.name
@@ -91,7 +92,7 @@ def get_popular_employers():
     current_app.logger.info('GET popular_employers route')
     cursor=db.get_db().cursor()
     the_query = '''
-        SELECT name, COUNT(jobRecords.companyID) FROM jobRecords
+        SELECT name AS Company, COUNT(jobRecords.companyID) AS Count FROM jobRecords
         JOIN company ON jobRecords.companyID = company.companyID
         GROUP BY name
         ORDER BY COUNT(jobRecords.companyID) DESC 

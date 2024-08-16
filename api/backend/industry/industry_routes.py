@@ -79,4 +79,17 @@ def add_new_industry():
     
     return 'Success!'
 
-
+# Remove an industry from the database
+@industry.route('/industry/<indID>', methods=['DELETE'])
+def remove_applicant(indID):
+    current_app.logger.info('DELETE /industry/<indID> route')
+    cursor = db.get_db().cursor()
+    query = '''
+        DELETE FROM industry
+        WHERE industryID = {0}'''.format(indID)
+    cursor.execute(query)
+    theData = cursor.fetchall()
+    the_response = make_response(theData)
+    the_response.status_code = 200
+    the_response.mimetype = 'application/json'
+    return the_response
