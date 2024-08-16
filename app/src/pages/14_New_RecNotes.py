@@ -30,4 +30,10 @@ with st.form("Add New Note"):
         recruiternote['popularCertificates'] = popularCertificates
         
 
-        requests.post('http://api:4000/rn/recruiterNotes', json = recruiternote)
+        response = requests.post('http://api:4000/rn/recruiterNotes', json = recruiternote)
+
+        if response.status_code == 200:
+            st.toast('Success')
+        else:
+            st.toast('Failed - Please try again')
+

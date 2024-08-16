@@ -60,7 +60,7 @@ def add_new_recruiter_note():
 
     #collecting data from request object
     app_info = request.json
-    current_app.logger.info(app_info)
+    current_app.logger.info('POST /recruiterNotes_route')
 
     #get variable
     interview_ID = app_info['interviewID']
@@ -68,9 +68,11 @@ def add_new_recruiter_note():
     compensation_range = app_info['compensation_range']
     role = app_info['role']
     popular_skill= app_info['popularSkill']
+    popular_certificates= app_info['popularCertificates']
 
     # Constructing the query
-    query = 'insert into applicants (fName, lName, email, prospect_pos) values ("'
+    query = 'insert into applicants (interviewID, recruiterID, compensation_range, role, popularSkill, popularCertificates) values (%s, %s, %s, %s, %s, %s)'
+    values = (interview_ID, recruiter_ID, compensation_range, role, popular_skill, popular_certificates)
     query += interview_ID + '", "'
     query += recruiter_ID + '", "'
     query += compensation_range + '", '
@@ -78,10 +80,9 @@ def add_new_recruiter_note():
     query += popular_skill + ')'
     current_app.logger.info(query)
 
-    # executing and committing the insert statement 
+    current_app.logger.info(query)
     cursor = db.get_db().cursor()
-    cursor.execute(query)
+    r = cursor.execute(query, values)
     db.get_db().commit()
-    
-    return 'Note added !'
+    return 'Note added!'
     
