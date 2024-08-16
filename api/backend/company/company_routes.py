@@ -88,3 +88,18 @@ def add_new_company():
     db.get_db().commit()
     
     return 'Success!'
+
+# Remove a company from the database
+@company.route('/company/<companyID>', methods=['DELETE'])
+def remove_applicant(companyID):
+    current_app.logger.info('DELETE /company/<companyID> route')
+    cursor = db.get_db().cursor()
+    query = '''
+        DELETE FROM company
+        WHERE companyID = {0}'''.format(companyID)
+    cursor.execute(query)
+    theData = cursor.fetchall()
+    the_response = make_response(theData)
+    the_response.status_code = 200
+    the_response.mimetype = 'application/json'
+    return the_response
