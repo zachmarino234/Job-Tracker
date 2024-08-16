@@ -100,7 +100,7 @@ CREATE TABLE applicantIntNotes (
    content TEXT,
    PRIMARY KEY(interviewID, appID),
    FOREIGN KEY (interviewID) REFERENCES interviewRecords(interviewID)
-   ON UPDATE CASCADE ON DELETE RESTRICT,
+   ON UPDATE CASCADE ON DELETE CASCADE,
    FOREIGN KEY (appID) REFERENCES applicants(appID)
    ON UPDATE CASCADE ON DELETE CASCADE
 );
