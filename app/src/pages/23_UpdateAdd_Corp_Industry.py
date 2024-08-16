@@ -18,6 +18,8 @@ with st.form("Update Company"):
     name = st.text_input("Company Name")
     num_emps = st.text_input("Number of Employees")
     founding_date = st.date_input("Founding Date")
+    datetime_obj = datetime.datetime.combine(founding_date, datetime.datetime.min.time())
+    datetime_str = datetime_obj.strftime('%Y-%m-%d %H:%M:%S')
     emp_benefits = st.text_area("Employee Benefits")
     value = st.number_input("Value of Company")
     ind_id = st.number_input("Industry ID", step = 1, format = "%d")
@@ -28,13 +30,18 @@ with st.form("Update Company"):
         corp_info["companyID"] = companyID
         corp_info["name"] = name
         corp_info["numEmployees"] = num_emps
-        corp_info["foundingDate"] = founding_date
+        corp_info["foundingDate"] = datetime_str
         corp_info["empBenefits"] = emp_benefits
         corp_info["value"] = value
         corp_info["indID"] = ind_id
             
         st.success("Company updated")
-        requests.put(f'http://api:4000/co/company', json = corp_info)
+        response = requests.put(f'http://api:4000/co/company', json = corp_info)
+
+        if response.status_code == 200:
+            st.toast('Success!')
+        else:
+            st.toast('Failed - ' + str(response.status_code))
 
 st.markdown("### Add Company")
 with st.form("Add Company"):

@@ -26,19 +26,21 @@ def get_all_companies():
 
 # Update company info in DB
 @company.route('/company', methods=['PUT'])
-def update_customer():
+def update_company():
     current_app.logger.info('PUT /company route')
     corp_info = request.json
-    corp_id = corp_info['companyID']
     name = corp_info['name']
     numemp = corp_info['numEmployees']
     founding_date = corp_info['foundingDate']
     empbens = corp_info['empBenefits']
     value = corp_info['value']
-    query = 'UPDATE company SET name = %s, numEmployees = %s, foundingDate = %s, empBenefits = %s where companyID = %s'
-    data = (corp_id, name, numemp, founding_date, empbens, value)
+    ind_id = corp_info['indID']
+    corp_id = corp_info['companyID']
+    query = 'UPDATE company SET name = %s, numEmployees = %s, foundingDate = %s, empBenefits = %s, value = %s, indID = %s WHERE companyID = %s'
+    values = (name, numemp, founding_date, empbens, value, ind_id, corp_id)
+    current_app.logger.info(query)
     cursor = db.get_db().cursor()
-    r = cursor.execute(query, data)
+    r = cursor.execute(query, values)
     db.get_db().commit()
     return 'company updated!'
 
@@ -72,7 +74,7 @@ def add_new_company():
     founding_date = corp_info['foundingDate']
     empbens = corp_info['empBenefits']
     value = corp_info['value']
-    indID = corp_info['indID']
+    ind_id = corp_info['indID']
 
     # Constructing the query
     query = 'insert into company (name, numEmployees, foundingDate, empBenefits, value, indID) values (%s, %s, %s, %s, %s, %s)'
@@ -82,7 +84,7 @@ def add_new_company():
         founding_date,
         empbens,
         value,
-        indID
+        ind_id
     )
     current_app.logger.info(query)
 
