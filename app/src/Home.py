@@ -63,7 +63,7 @@ if st.button('Act as Sam, Head of the Quantitative Analytics Department of XYZ, 
     st.session_state['authenticated'] = True
     st.session_state['role'] = 'dept_head'
     st.session_state['first_name'] = 'Sam'
-    st.switch_page('pages/10_USAID_Worker_Home.py')
+    st.switch_page('pages/10_Recruiter_Home.py')
 
 if st.button('Act as Alex, Applications Analyst at TalentTrace and System Administrator', 
             type = 'primary', 

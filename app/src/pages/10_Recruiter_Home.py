@@ -21,14 +21,14 @@ if st.button('View your notes',
 if st.button('Add new notes', 
              type='primary',
              use_container_width=True):
-  st.switch_page('pages/14_New_RecNotes.py')
+  st.switch_page('pages/13_New_RecNotes.py')
 
 if st.button('View applicants', 
              type='primary',
              use_container_width=True):
-  st.switch_page('pages/14_Applicant_Data.py')
+  st.switch_page('pages/11_Applicant_Data.py')
 
 if st.button("What's new on the market?",
              type='primary',
              use_container_width=True):
-  st.switch_page('pages/14_New_Job_Trend.py')
+  st.switch_page('pages/12_New_Job_Trend.py')

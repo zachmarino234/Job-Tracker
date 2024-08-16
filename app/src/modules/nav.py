@@ -28,24 +28,24 @@ def DeleteAccount():
 # -------------------------------- Sidebar for Sam -----------------------------------------------
 
 def SamNav():
-    st.sidebar.page_link("pages/14_Sam.py", label="Sam's Dashboard", icon='🛠️')
+    st.sidebar.page_link("pages/10_Recruiter_Home.py", label="Sam's Dashboard", icon='🛠️')
 
 def viewRecruiterNotes():
     st.sidebar.page_link("pages/14_Recruiter_Notes.py", label="View Your Notes", icon='🔎')
 
 def addRecruiterNotes():
-    st.sidebar.page_link("pages/14_New_RecNotes.py", label="Add New Interview Records", icon='📝')
+    st.sidebar.page_link("pages/13_New_RecNotes.py", label="Add New Interview Records", icon='📝')
 
 def viewApplicantData():
-    st.sidebar.page_link("pages/14_Applicant_Data.py", label="Who applied recently?", icon='📥')
+    st.sidebar.page_link("pages/11_Applicant_Data.py", label="Who applied recently?", icon='📥')
 
 def viewJobTrend():
-    st.sidebar.page_link("pages/14_New_Job_Trend.py", label="What's new on the market?", icon='📊')
+    st.sidebar.page_link("pages/12_New_Job_Trend.py", label="What's new on the market?", icon='📊')
 
 #### ------------------------ Sidebar for Alex ------------------------
 def AdminPageNav():
     st.sidebar.page_link("pages/20_Admin_Home.py", label="System Admin", icon='🖥️')
-    st.sidebar.page_link("pages/12_API_Test.py", label="Test the API", icon='🛜')
+    #st.sidebar.page_link("pages/12_API_Test.py", label="Test the API", icon='🛜')
     st.sidebar.page_link("pages/03_Aggregate_Job_Data.py", label="See Aggregate Job Data", icon='📊')
     st.sidebar.page_link("pages/23_UpdateAdd_Corp_Industry.py", label="Update/Add a Company or Industry", icon='🌐')
     st.sidebar.page_link("pages/22_Remove_Corp_Industry.py", label="Remove a Company or Industry", icon='🚫')
