@@ -13,7 +13,7 @@ SideBarLinks()
 st.markdown("# What's new in the job market?")
 
 
-st.header("Most Lucrative Position")
+st.header("Most Lucrative Positions")
 lucrative_positions = pd.DataFrame(
    requests.get('http://api:4000/agg/lucrativeposition').json()
 )

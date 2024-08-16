@@ -14,22 +14,22 @@ st.write('')
 st.write('')
 st.write('### What would you like to do today?')
 
-if st.button('See Applicants Data', 
+if st.button('View your notes', 
              type='primary',
              use_container_width=True):
-  st.switch_page('pages/14_Applicant_Data')
+  st.switch_page('pages/14_Recruiter_Notes.py')
 
-if st.button('View Your Notes', 
+if st.button('Add new notes', 
              type='primary',
              use_container_width=True):
-  st.switch_page('pages/14_Recruiter_Notes')
+  st.switch_page('pages/14_New_RecNotes.py')
 
-if st.button("Add new notes",
+if st.button('View applicants', 
              type='primary',
              use_container_width=True):
-  st.switch_page('pages/14_New_RecNotes')
+  st.switch_page('pages/14_Applicant_Data.py')
 
-if st.button("What's new on the market",
+if st.button("What's new on the market?",
              type='primary',
              use_container_width=True):
-  st.switch_page('pages/14_New_Job_Trend')
+  st.switch_page('pages/14_New_Job_Trend.py')
