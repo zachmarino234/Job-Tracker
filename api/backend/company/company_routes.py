@@ -72,19 +72,23 @@ def add_new_company():
     founding_date = corp_info['foundingDate']
     empbens = corp_info['empBenefits']
     value = corp_info['value']
+    indID = corp_info['indID']
 
     # Constructing the query
-    query = 'insert into company (name, numEmployees, foundingDate, empBenefits, value) values ("'
-    query += name + '", "'
-    query += numemp + '", "'
-    query += founding_date + '", '
-    query += empbens + '", '
-    query += value + ')'
+    query = 'insert into company (name, numEmployees, foundingDate, empBenefits, value, indID) values (%s, %s, %s, %s, %s, %s)'
+    values = (
+        name,
+        numemp,
+        founding_date,
+        empbens,
+        value,
+        indID
+    )
     current_app.logger.info(query)
 
     # executing and committing the insert statement 
     cursor = db.get_db().cursor()
-    cursor.execute(query)
+    cursor.execute(query, values)
     db.get_db().commit()
     
     return 'Success!'
