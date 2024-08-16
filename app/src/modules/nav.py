@@ -33,7 +33,7 @@ def SamNav():
 def viewRecruiterNotes():
     st.sidebar.page_link("pages/14_Recruiter_Notes.py", label="View Your Notes", icon='🔎')
 
-def addRecruiterNotes():
+def addInterviewRecord():
     st.sidebar.page_link("pages/14_New_RecNotes.py", label="Add New Interview Records", icon='📝')
 
 def viewApplicantData():
@@ -83,7 +83,7 @@ def SideBarLinks(show_home=False):
         if st.session_state['role'] == 'dept_head':
             SamNav()
             viewRecruiterNotes() 
-            addRecruiterNotes()
+            addInterviewRecord()
             viewApplicantData()
             viewJobTrend()
         
