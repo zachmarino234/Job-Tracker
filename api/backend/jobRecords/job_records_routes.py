@@ -164,6 +164,22 @@ def remove_job_records(appID):
 
 
 
+# Get all job entries for a user
+@job_records.route('/job_records/user_job_entries/<appID>', methods=['GET'])
+def get_user_job_entries(appID):
+    current_app.logger.info('GET user_job_entries route')
+    cursor=db.get_db().cursor()
+    the_query = '''
+        SELECT jobTitle AS Position, c.name AS Company, i.name AS Industry, salary AS Salary, dateApplied As Applied, description AS Description, posLevel AS Level, jobAddress AS Address, jobCity As City, jobCountry AS Country FROM jobRecords jr
+    LEFT JOIN company c on c.companyID = jr.companyID
+    LEFT JOIN industry i ON i.indID = jr.indID = i.indID
+    WHERE appID = {0}'''.format(appID)
+    cursor.execute(the_query)
+    theData = cursor.fetchall()
+    theResponse=make_response(theData)
+    theResponse.status_code = 200
+    theResponse.mimetype = 'application/json'
+    return theResponse
 
 
 
