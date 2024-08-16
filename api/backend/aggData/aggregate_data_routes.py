@@ -104,3 +104,48 @@ def get_popular_employers():
     theResponse.status_code = 200
     theResponse.mimetype = 'application/json'
     return theResponse
+
+# Get the amount of users (default is 1000 because of mock data)
+@aggregate.route('/user_count', methods=['GET'])
+def get_user_count():
+    current_app.logger.info('GET user_count route')
+    cursor=db.get_db().cursor()
+    the_query = '''
+        SELECT COUNT(appID) FROM applicants
+    '''
+    cursor.execute(the_query)
+    theData = cursor.fetchall()
+    theResponse=make_response(theData)
+    theResponse.status_code = 200
+    theResponse.mimetype = 'application/json'
+    return theResponse
+
+# Get the amount of job entries (default is 1000 because of mock data)
+@aggregate.route('/job_entries', methods=['GET'])
+def get_job_entries():
+    current_app.logger.info('GET job_entries route')
+    cursor=db.get_db().cursor()
+    the_query = '''
+        SELECT COUNT(jobID) FROM jobRecords
+    '''
+    cursor.execute(the_query)
+    theData = cursor.fetchall()
+    theResponse=make_response(theData)
+    theResponse.status_code = 200
+    theResponse.mimetype = 'application/json'
+    return theResponse
+
+# Get the amount of companies (default is 1000 because of mock data)
+@aggregate.route('/companies', methods=['GET'])
+def get_companies():
+    current_app.logger.info('GET companies route')
+    cursor=db.get_db().cursor()
+    the_query = '''
+        SELECT COUNT(companyID) FROM jobRecords
+    '''
+    cursor.execute(the_query)
+    theData = cursor.fetchall()
+    theResponse=make_response(theData)
+    theResponse.status_code = 200
+    theResponse.mimetype = 'application/json'
+    return theResponse

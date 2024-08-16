@@ -47,7 +47,7 @@ def AdminPageNav():
     st.sidebar.page_link("pages/20_Admin_Home.py", label="System Admin", icon='🖥️')
     st.sidebar.page_link("pages/21_ML_Model_Mgmt.py", label='ML Model Management', icon='🏢')
     st.sidebar.page_link("pages/12_API_Test.py", label="Test the API", icon='🛜')
-
+    st.sidebar.page_link("pages/03_Aggregate_Job_Data.py", label="See Aggregate Job Data", icon='📊')
     st.sidebar.page_link("pages/22_Remove_Corp_Industry.py", label="Remove a Company or Industry", icon='🚫')
 
 # --------------------------------Links Function -----------------------------------------------

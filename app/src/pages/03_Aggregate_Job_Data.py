@@ -14,6 +14,31 @@ st.set_page_config(layout = 'wide', page_icon='assets/logo.png')
 SideBarLinks()
 add_logo("assets/logo.png", height=400)
 
+# Displays KPI's if user is administrator role
+if st.session_state['role'] == 'administrator':
+    st.header("At a Glance")
+
+    # Get the data from the routes
+    user_data = pd.DataFrame (
+        requests.get('http://api:4000/agg/user_count').json()
+    ).iloc[0]
+
+    job_data = pd.DataFrame (
+        requests.get('http://api:4000/agg/job_entries').json()
+    ).iloc[0]
+
+    company_data = pd.DataFrame (
+        requests.get('http://api:4000/agg/companies').json()
+    ).iloc[0]
+
+    # Create columns to display them horizontally
+    col1, col2, col3 = st.columns(3)
+    col1.metric(label="Users", value=user_data)
+    col2.metric(label="Job Entries", value=job_data)
+    col3.metric(label="Companies", value=company_data)
+    
+    st.caption("Note: Each metric is 1000 because our mock data generated 1000 rows for each table")
+
 # Most popular countries
 st.header("Most Popular Countries")
 country_data = pd.DataFrame(
@@ -55,3 +80,4 @@ industry_data = pd.DataFrame(
 )
 
 st.dataframe(industry_data, use_container_width=True, column_order=('Industry', 'Count'))
+st.caption("Note: Each Industry has 100 records because our mock data generated 100 rows for each industry")
