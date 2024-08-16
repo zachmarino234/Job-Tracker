@@ -19,6 +19,7 @@ with st.form("Add New Note"):
     job_ID = st.number_input("Job ID", placeholder="Enter ID", label_visibility="visible")
     app_ID = st.number_input("App ID", placeholder="Enter ID", label_visibility="visible")
     recruiter_ID = st.number_input("recruiterID", placeholder="Enter ID", label_visibility="visible")
+    date = st.date_input('Interview Date')
 
     
     
@@ -30,7 +31,7 @@ with st.form("Add New Note"):
         recruiternote['jobID'] = job_ID
         recruiternote['appID'] = app_ID
         recruiternote['recruiterID'] = recruiter_ID
-        
+        recruiternote['date']= date
         
 
         response = requests.post('http://api:4000/rn/recruiterNotes', json = recruiternote)
