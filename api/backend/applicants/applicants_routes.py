@@ -4,7 +4,6 @@
 from flask import Blueprint, request, jsonify, make_response, current_app
 import json
 from backend.db_connection import db
-from backend.ml_models.model01 import predict
 
 applicants = Blueprint('applicants', __name__)
 
@@ -26,7 +25,7 @@ def get_all_applicants():
 
 # Update an applicants info in DB
 @applicants.route('/applicants', methods=['PUT'])
-def update_customer():
+def update_applicant():
     current_app.logger.info('PUT /applicants route')
     app_info = request.json
     app_id = app_info['appID']
