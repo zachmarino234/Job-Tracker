@@ -18,7 +18,7 @@ if st.button('View your notes',
              use_container_width=True):
   st.switch_page('pages/14_Recruiter_Notes.py')
 
-if st.button('Add new notes', 
+if st.button('Add new interview records', 
              type='primary',
              use_container_width=True):
   st.switch_page('pages/14_New_RecNotes.py')

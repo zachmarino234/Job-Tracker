@@ -34,7 +34,7 @@ def viewRecruiterNotes():
     st.sidebar.page_link("pages/14_Recruiter_Notes.py", label="View Your Notes", icon='🔎')
 
 def addRecruiterNotes():
-    st.sidebar.page_link("pages/14_New_RecNotes.py", label="Add New Notes", icon='📝')
+    st.sidebar.page_link("pages/14_New_RecNotes.py", label="Add New Interview Records", icon='📝')
 
 def viewApplicantData():
     st.sidebar.page_link("pages/14_Applicant_Data.py", label="Who applied recently?", icon='📥')
