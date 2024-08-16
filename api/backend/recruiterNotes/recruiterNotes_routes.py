@@ -64,25 +64,25 @@ def add_new_recruiter_note():
 
     #get variable
     interview_ID = app_info['interviewID']
-    recruiter_ID = app_info['recruiterID']
     compensation_range = app_info['compensation_range']
     role = app_info['role']
-    popular_skill= app_info['popularSkill']
-    popular_certificates= app_info['popularCertificates']
+    popular_skill = app_info['popularSkill']
+    popular_certificates = app_info['popularCertificates']
 
     # Constructing the query
-    query = 'insert into applicants (interviewID, recruiterID, compensation_range, role, popularSkill, popularCertificates) values (%s, %s, %s, %s, %s, %s)'
-    values = (interview_ID, recruiter_ID, compensation_range, role, popular_skill, popular_certificates)
-    query += interview_ID + '", "'
-    query += recruiter_ID + '", "'
-    query += compensation_range + '", '
-    query += role + '", '
-    query += popular_skill + ')'
+    query = '''
+        insert intp recruiterIntNotes 
+        (interviewID, compensation_range, role, popularSkill, popularCertificates) 
+        values (%s, %s, %s, %s, %s, %s)
+    '''
+    values = (interview_ID, compensation_range, role, popular_skill, popular_certificates)
+    
     current_app.logger.info(query)
-
-    current_app.logger.info(query)
+    
+    # Execute the query
     cursor = db.get_db().cursor()
-    r = cursor.execute(query, values)
+    cursor.execute(query, values)
     db.get_db().commit()
+    
     return 'Note added!'
     
