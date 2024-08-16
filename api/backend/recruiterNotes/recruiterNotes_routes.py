@@ -63,19 +63,18 @@ def add_new_recruiter_note():
     current_app.logger.info('POST /recruiterNotes_route')
 
     #get variable
-    interview_ID = app_info['interviewID']
-    compensation_range = app_info['compensation_range']
-    role = app_info['role']
-    popular_skill = app_info['popularSkill']
-    popular_certificates = app_info['popularCertificates']
+    job_ID = app_info['jobID']
+    app_ID = app_info['appID']
+    recruiter_ID = app_info['recruiterID']
+    date = app_info['date']
 
     # Constructing the query
     query = '''
-        insert intp recruiterIntNotes 
-        (interviewID, compensation_range, role, popularSkill, popularCertificates) 
-        values (%s, %s, %s, %s, %s, %s)
+        insert into interviewRecords 
+        (jobID, appID, recruiterID) 
+        values (%s, %s, %s)
     '''
-    values = (interview_ID, compensation_range, role, popular_skill, popular_certificates)
+    values = (job_ID, app_ID, recruiter_ID)
     
     current_app.logger.info(query)
     
