@@ -87,7 +87,7 @@ def remove_industry(indID):
     cursor = db.get_db().cursor()
     query = '''
         DELETE FROM industry
-        WHERE industryID = {0}'''.format(indID)
+        WHERE indID = {0}'''.format(indID)
     cursor.execute(query)
     db.get_db().commit()
     theData = cursor.fetchall()
