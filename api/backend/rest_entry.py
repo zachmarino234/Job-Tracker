@@ -4,22 +4,15 @@ logging.basicConfig(level=logging.DEBUG)
 from flask import Flask
 
 from backend.db_connection import db
-from backend.customers.customer_routes import customers
-from backend.products.products_routes import products
 
-# adding jobrecords/appnotes/recruiternotes Blueprint
+
+#Adding all Blueprint objects needed
 from backend.jobRecords.job_records_routes import job_records
 from backend.appNotes.appNotes_routes import appNotes
 from backend.recruiterNotes.recruiterNotes_routes import recruiterNotes
-
-
-#adding applicants/industries/company blueprint
 from backend.applicants.applicants_routes import applicants
 from backend.industry.industry_routes import industry
 from backend.company.company_routes import company
-
-
-#Test
 from backend.aggData.aggregate_data_routes import aggregate
 
 import os
@@ -56,75 +49,17 @@ def create_app():
     def welcome():
         return "<h1>Welcome to the TalentTrace API</h1>"
     
-    # Example route for testing streamlit
-    @app.route("/data")
-    def getData():
-        data = {
-            "staff": [
-                {
-                    "Name": "Mark Fontenot",
-                    "role": "Instructor"
-                },
-                {
-                    "Name": "Ashley Davis",
-                    "role": "TA"
-                },
-                {
-                    "Name": "Dylan Toplas",
-                    "role": "TA"
-                },
-                {
-                    "Name": "Hazelyn Aroian",
-                    "role": "TA"
-                },
-                {
-                    "Name": "Jared Lyon",
-                    "role": "TA"
-                },
-                {
-                    "Name": "Khanh Nguyen",
-                    "role": "TA"
-                },
-                {
-                    "Name": "Nathan Cheung",
-                    "role": "TA"
-                },
-                {
-                    "Name": "Nicole Contreras",
-                    "role": "TA"
-                },
-                {
-                    "Name": "Reid Chandler",
-                    "role": "TA"
-                },
-                {
-                    "Name": "Sai Kumar Reddy",
-                    "role": "TA"
-                }
-            ]
-        }
-        return data
+    
     
     app.logger.info('current_app(): registering blueprints with Flask app object.')
 
     # Register the routes from each Blueprint with the app object
     # and give a url prefix to each
-    app.register_blueprint(customers,   url_prefix='/c')
-    app.register_blueprint(products,    url_prefix='/p')
-    
-
-    #URL prefix for applicants/industries
     
     app.register_blueprint(applicants, url_prefix='/a')
     app.register_blueprint(industry,url_prefix='/i')
     app.register_blueprint(company,url_prefix='/co')
-
-    
-
     app.register_blueprint(aggregate, url_prefix = '/agg' )
-
-    
-    #URL prefix for notes (both recruiters and applicants) and job records
     app.register_blueprint(job_records, url_prefix='/jbr')
     app.register_blueprint(appNotes, url_prefix = '/an')
     app.register_blueprint(recruiterNotes, url_prefix = '/rn')
